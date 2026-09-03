@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- menu -->
+    <menuitem id="menu_restaurant_root" name="Restaurant" sequence="10"/>
+    <menuitem id="menu_restaurant_orders" name="Orders" parent="menu_restaurant_root" sequence="1"/>
+
+    <!-- tree view -->
+    <record id="view_restaurant_order_tree" model="ir.ui.view">
+      <field name="name">restaurant.order.tree</field>
+      <field name="model">restaurant.order</field>
+      <field name="arch" type="xml">
+        <tree string="Orders">
+          <field name="name"/>
+          <field name="date_order"/>
+          <field name="state"/>
+          <field name="total_amount"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_restaurant_order_form" model="ir.ui.view">
+      <field name="name">restaurant.order.form</field>
+      <field name="model">restaurant.order</field>
+      <field name="arch" type="xml">
+        <form string="Order">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="date_order"/>
+              <field name="state"/>
+              <field name="table_id"/>
+            </group>
+            <notebook>
+              <page string="Items">
+                <field name="order_line_ids">
+                  <tree editable="bottom">
+                    <field name="product_id"/>
+                    <field name="qty"/>
+                    <field name="price_unit"/>
+                    <field name="price_subtotal"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+            <group>
+              <field name="total_amount"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_restaurant_order" model="ir.actions.act_window">
+      <field name="name">Restaurant Orders</field>
+      <field name="res_model">restaurant.order</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_restaurant_order_tree"/>
+    </record>
+
+    <record id="menu_action_restaurant_orders" model="ir.ui.menu">
+      <field name="name">Orders</field>
+      <field name="parent_id" ref="menu_restaurant_root"/>
+      <field name="action" ref="action_restaurant_order"/>
+    </record>
+
+    <!-- Access rights -->
+  </data>
+</odoo>

@@ -1,0 +1,4 @@
+/* RTL support for POS when Arabic is selected */
+.o_pos, .posbox {
+  direction: rtl;
+}

@@ -1,0 +1,5 @@
+msgid "Restaurant Orders"
+msgstr "Commandes Restaurant"
+
+msgid "Orders"
+msgstr "Commandes"
