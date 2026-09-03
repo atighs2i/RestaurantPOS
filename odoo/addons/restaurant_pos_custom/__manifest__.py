@@ -12,6 +12,7 @@
     ],
     "data": [
         "views/restaurant_pos_views.xml",
+        "views/kds_views.xml",
         "security/ir.model.access.csv"
     ],
     "qweb": [],

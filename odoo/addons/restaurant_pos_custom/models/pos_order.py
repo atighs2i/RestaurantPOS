@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class RestaurantOrder(models.Model):
     _name = 'restaurant.order'
@@ -15,6 +16,19 @@ class RestaurantOrder(models.Model):
     def _compute_total(self):
         for rec in self:
             rec.total_amount = sum(line.price_subtotal for line in rec.order_line_ids)
+
+    def button_set_paid(self):
+        for order in self:
+            order.state = 'paid'
+            try:
+                # call inventory consumption utility
+                self.env['restaurant.inventory'].create_outgoing_picking_for_order(order)
+            except Exception as e:
+                # log the exception to inventory log and continue (default behavior: allow payment but flag)
+                self.env['restaurant.inventory.log'].create({
+                    'order_id': order.id,
+                    'message': 'Inventory consumption error: %s' % str(e)
+                })
 
 class RestaurantOrderLine(models.Model):
     _name = 'restaurant.order.line'

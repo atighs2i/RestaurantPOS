@@ -1,5 +1,8 @@
-msgid "Restaurant Orders"
-msgstr "طلبات المطعم"
+msgid "Kitchen"
+msgstr "المطبخ"
 
-msgid "Orders"
-msgstr "الطلبات"
+msgid "Kitchen Display"
+msgstr "شاشة المطبخ"
+
+msgid "Inventory Log"
+msgstr "سجل المخزون"

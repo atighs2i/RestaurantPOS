@@ -1,5 +1,8 @@
-msgid "Restaurant Orders"
-msgstr "Commandes Restaurant"
+msgid "Kitchen"
+msgstr "Cuisine"
 
-msgid "Orders"
-msgstr "Commandes"
+msgid "Kitchen Display"
+msgstr "Affichage Cuisine"
+
+msgid "Inventory Log"
+msgstr "Journal d'inventaire"

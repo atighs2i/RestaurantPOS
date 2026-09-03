@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- KDS assets injection -->
+    <template id="assets_backend" inherit_id="web.assets_backend" name="restaurant_pos_assets">
+      <xpath expr="." position="inside">
+        <link rel="stylesheet" href="/restaurant_pos_custom/static/src/css/pos_rtl.css"/>
+        <script type="text/javascript" src="/restaurant_pos_custom/static/src/js/pos_kds.js"></script>
+      </xpath>
+    </template>
+
+    <!-- KDS Menu and Action (opens external URL) -->
+    <record id="action_kds_open" model="ir.actions.act_url">
+      <field name="name">Kitchen Display</field>
+      <field name="url">/restaurant/kds/dashboard</field>
+      <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_restaurant_kds" name="Kitchen" parent="menu_restaurant_root" action="action_kds_open" sequence="5"/>
+
+  </data>
+</odoo>
